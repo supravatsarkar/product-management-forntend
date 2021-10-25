@@ -5,6 +5,11 @@ import Home from "./components/Home/Home";
 import UpdateUser from "./components/UpdateUser/UpdateUser";
 import Users from "./components/Users/Users";
 import Header from './components/Header/Header';
+import AddProducts from "./components/AddProducts/AddProducts";
+import ManageProducts from "./components/ManageProducts/ManageProducts";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import UpdateProduct from "./components/UpdateProduct/UpdateProduct";
 
 function App() {
   return (
@@ -22,13 +27,18 @@ function App() {
             <Route path="/users/add">
               <AddUser></AddUser>
             </Route>
-            <Route path="/users/add">
-              <AddUser></AddUser>
-            </Route>
             <Route path="/users/update/:id">
               <UpdateUser></UpdateUser>
             </Route>
-
+            <Route path="/products/addproducts">
+              <AddProducts></AddProducts>
+            </Route>
+            <Route path="/products/manageproducts">
+              <ManageProducts></ManageProducts>
+            </Route>
+            <Route path="/products/updateproduct/:id">
+              <UpdateProduct></UpdateProduct>
+            </Route>
           </Switch>
         </div>
       </Router>
