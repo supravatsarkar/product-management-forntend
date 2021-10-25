@@ -35,29 +35,36 @@ const UpdateProducts = () => {
         setProduct(updatedProduct);
     }
 
-    const handleUpdate = (e, id) => {
+    const handleUpdate = (e) => {
         e.preventDefault();
-        // const url = `http://localhost:5000/products/updateproduct/${id}`
-        // fetch(url, {
-        //     method: 'PUT',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify(product)
-        // })
-
+        const { _id, ...rest } = product;
+        // const updatedProduct = 
+        const url = `http://localhost:5000/products/updateproduct/${id}`
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(rest)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount > 0) {
+                    alert('Update successful');
+                }
+            })
     }
     return (
         <div className="container">
             <h2>Update/Edit Product</h2>
-
             <div className="bg-success p-1 text-white rounded shadow">
                 <p>ID: {id}</p>
                 <p> Product Name: {product.name}</p>
                 <p>Price:{product.price}</p>
                 <p>Quantity:{product.quantity}</p>
             </div>
-            <form onSubmit={() => { handleUpdate(product._id) }}>
+            <form onSubmit={handleUpdate}>
                 <input type="text" onChange={handleName} value={product.name} />
                 <input type="number" onChange={handlePrice} value={product.price} />
                 <input type="number" onChange={handleQuantity} value={product.quantity} />
